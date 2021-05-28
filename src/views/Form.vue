@@ -144,6 +144,7 @@ export default {
         test: null
       },
       faculty: {
+        updatedAt: null,
         address: null,
         faculty: null,
         certifiedby: null,
@@ -184,6 +185,7 @@ export default {
     saveData () {
       const self = this
       if (self.faculty.labname !== null && self.faculty.tests.length > 0) {
+        self.faculty.updatedAt = new Date()
         db.collection('faculty').add(this.faculty).then(()=>{
           self.$buefy.toast.open({
             type: 'is-success',
