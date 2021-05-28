@@ -2,6 +2,7 @@
   <div class="container">
     <div class="columns">
       <div class="column has-text-centered">
+        <img src="../assets/logo.png" width="100">
         <h1 class="title">Welcome to Mahidol Lab Database</h1>
         <b-field>
           <b-input rounded placeholder="ค้นหาการทดสอบ" size="is-medium"></b-input>
@@ -62,7 +63,7 @@
             {{ props.row.updatedAt.toDate().toLocaleDateString() }}
           </b-table-column>
           <b-table-column field="action" v-slot="props">
-            <router-link :to="{ name: 'Detail', params: {id: props.row.id}}" class="button is-light is-primary">
+            <router-link :to="{ name: 'Detail', params: {labId: props.row.id}}" class="button is-light is-primary">
               <span class="icon">
                 <i class="fas fa-info-circle"></i>
               </span>

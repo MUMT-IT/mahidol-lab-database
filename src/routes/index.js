@@ -21,6 +21,14 @@ const routes = [
         },
         component: () => import('../views/Form.vue')
     },
+    {
+        path: '/detail/:labId',
+        name: 'Detail',
+        meta: {
+            title: 'Detail Page',
+        },
+        component: () => import('../views/Detail.vue')
+    },
 ]
 
 const router = new VueRouter({

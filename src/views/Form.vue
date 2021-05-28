@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="columns">
-      <div class="column is-half is-offset-3 box">
+      <div class="column is-half is-offset-3">
         <h1 class="title is-size-4">ข้อมูลห้องปฏิบัติการ</h1>
         <b-field label="ชื่อคณะ">
           <b-select v-model="faculty.faculty" placeholder="โปรดเลือก">
@@ -61,7 +61,7 @@
     </div>
     <br>
     <div class="columns">
-      <div class="column is-half is-offset-3 box">
+      <div class="column is-half is-offset-3">
         <h1 class="title is-size-4">รายการทดสอบ</h1>
         <h1 v-if="faculty.tests.length == 0" class="subtitle is-size-6 has-text-danger">กรุณาระบุอย่างน้อยหนึ่งรายการ</h1>
         <div class="field is-horizontal" v-for="t in faculty.tests" :key="t.id">

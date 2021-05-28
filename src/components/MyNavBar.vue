@@ -2,17 +2,14 @@
   <b-navbar>
     <template #brand>
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
-        <img
-            src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-            alt="Lightweight UI components for Vue.js based on Bulma"
-        >
+        <img src="../assets/logo.png" alt="Mahidol University Logo">
       </b-navbar-item>
     </template>
     <template #start>
-      <b-navbar-item href="/">
+      <b-navbar-item :to="{ name: 'Main' }" tag="router-link">
         Home
       </b-navbar-item>
-      <b-navbar-item href="/form">
+      <b-navbar-item :to="{ name: 'Form' }" tag="router-link">
         Form
       </b-navbar-item>
     </template>
