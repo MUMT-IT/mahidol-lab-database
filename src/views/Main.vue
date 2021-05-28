@@ -33,19 +33,27 @@ export default {
       columns: [
         {
           field: 'labname',
-          label: 'Laboratory',
+          label: 'ห้องปฏิบัติการ',
         },
         {
           field: 'faculty',
-          label: 'Faculty',
+          label: 'คณะ/หน่วยงาน',
         },
         {
           field: 'address',
-          label: 'Address',
+          label: 'ที่อยู่',
         },
         {
           field: 'province',
-          label: 'Province',
+          label: 'จังหวัด',
+        },
+        {
+          field: 'phone',
+          label: 'โทรศัพท์',
+        },
+        {
+          field: 'website',
+          label: 'Web Site',
         }
       ],
     }
