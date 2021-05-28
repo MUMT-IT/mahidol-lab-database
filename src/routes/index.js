@@ -29,6 +29,14 @@ const routes = [
         },
         component: () => import('../views/Detail.vue')
     },
+    {
+        path: '/tests',
+        name: 'Tests',
+        meta: {
+            title: 'Tests Page',
+        },
+        component: () => import('../views/Tests.vue')
+    },
 ]
 
 const router = new VueRouter({

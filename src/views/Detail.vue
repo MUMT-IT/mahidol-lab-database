@@ -63,7 +63,7 @@
     </div>
   </div>
   <div class="columns">
-    <div class="column is-half is-offset-3">
+    <div class="column is-two-thirds is-offset-2">
       <b-table :data="faculty.tests" :striped="true" :loading="isLoading" :mobile-cards="true">
         <b-table-column field="test" label="การทดสอบ" v-slot="props">
           {{ props.row.test }}
@@ -78,7 +78,7 @@
     </div>
   </div>
   <div class="columns">
-    <div class="column has-text-centered">
+    <div class="column is-two-thirds is-offset-2 has-text-centered">
       <p>แก้ไขข้อมูลเมื่อ {{ faculty.updatedAt.toDate().toLocaleDateString() }}</p>
     </div>
   </div>

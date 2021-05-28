@@ -4,15 +4,12 @@
       <div class="column has-text-centered">
         <img src="../assets/logo.png" width="100">
         <h1 class="title">Welcome to Mahidol Lab Database</h1>
-        <b-field>
-          <b-input rounded placeholder="ค้นหาการทดสอบ" size="is-medium"></b-input>
-        </b-field>
-        <button class="button is-light">
+        <router-link class="button is-light" :to="{name: 'Tests'}">
           <span class="icon">
            <i class="fas fa-search"></i>
           </span>
-          <span>ค้นหา</span>
-        </button>
+          <span>ค้นหาจากรายการทดสอบ</span>
+        </router-link>
       </div>
     </div>
     <hr>
@@ -28,12 +25,30 @@
     </div>
     <div class="columns">
       <div class="column">
-        <b-table :data="data" :striped="true">
-          <b-table-column field="faculty" label="คณะ/หน่วยงาน" v-slot="props">
-            {{ school[props.row.faculty] }}
+        <b-table :data="data" :striped="true" :paginated="true" :per-page="10">
+          <b-table-column field="faculty" label="คณะ/หน่วยงาน" :searchable="true" :sortable="true">
+            <template #searchable="props">
+              <b-input
+                  v-model="props.filters[props.column.field]"
+                  placeholder="Search..."
+                  icon="magnify"
+                  size="is-small is-rounded" />
+            </template>
+            <template v-slot="props">
+              {{ props.row.faculty }}
+            </template>
           </b-table-column>
-          <b-table-column field="labname" label="ห้องปฏิบัติการ" v-slot="props">
-            {{ props.row.labname }}
+          <b-table-column field="labname" label="ห้องปฏิบัติการ" :searchable="true" :sortable="true">
+            <template #searchable="props">
+              <b-input
+                  v-model="props.filters[props.column.field]"
+                  placeholder="Search..."
+                  icon="magnify"
+                  size="is-small is-rounded" />
+            </template>
+            <template v-slot="props">
+              {{ props.row.labname }}
+            </template>
           </b-table-column>
           <b-table-column field="numTests" label="จำนวนการทดสอบ" v-slot="props">
             {{ props.row.numTests }}
@@ -42,10 +57,12 @@
             <a :href="'//' + props.row.website">{{ props.row.website }}</a>
           </b-table-column>
           <b-table-column field="address" label="ที่อยู่/โทรศัพท์" v-slot="props">
-            <span class="icon">
-              <i class="fas fa-map-marker-alt"></i>
-            </span>
-            <span class="is-size-6">{{ props.row.address }}, {{ props.row.province }}</span>
+            <p v-if="props.row.address">
+              <span class="icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </span>
+              <span class="is-size-6">{{ props.row.address }}, {{ props.row.province }}</span>
+            </p>
             <p v-if="props.row.phone">
               <span class="icon">
                 <i class="fas fa-phone"></i>
@@ -95,14 +112,24 @@ export default {
     }
   },
   methods: {
-    loadData () {
+    async loadData () {
       const self = this;
-      db.collection('faculty').get().then((snapshot)=>{
+      await db.collection('school').get().then((snapshot)=>{
+        snapshot.forEach((d)=>{
+          self.school[d.id] = d.data().name
+        })
+      })
+      await db.collection('categories').get().then((snapshot)=>{
+        snapshot.forEach((d)=>{
+          self.categories[d.id] = d.data().name
+        })
+      })
+      await db.collection('faculty').get().then((snapshot)=>{
         snapshot.forEach((d)=>{
           let fac = d.data()
           self.data.push({
             labname: fac.labname,
-            faculty: fac.faculty,
+            faculty: self.school[fac.faculty],
             address: fac.address,
             province: fac.province,
             website: fac.website,
@@ -112,16 +139,6 @@ export default {
             numTests: fac.tests.length,
             id: d.id
           })
-        })
-      })
-      db.collection('categories').get().then((snapshot)=>{
-        snapshot.forEach((d)=>{
-          self.categories[d.id] = d.data().name
-        })
-      })
-      db.collection('school').get().then((snapshot)=>{
-        snapshot.forEach((d)=>{
-          self.school[d.id] = d.data().name
         })
       })
     },
