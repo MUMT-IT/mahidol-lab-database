@@ -26,8 +26,17 @@
             {{ props.row.test }}
           </template>
         </b-table-column>
-        <b-table-column field="standard" label="มาตรฐาน" v-slot="props">
-          {{ props.row.standard }}
+        <b-table-column field="standard" label="มาตรฐาน" :searchable="true">
+          <template #searchable="props">
+            <b-input
+                v-model="props.filters[props.column.field]"
+                placeholder="Search..."
+                icon="magnify"
+                size="is-small is-rounded" />
+          </template>
+          <template v-slot="props">
+            {{ props.row.standard }}
+          </template>
         </b-table-column>
         <b-table-column field="category" label="ประเภท" :searchable="true">
           <template #searchable="props">

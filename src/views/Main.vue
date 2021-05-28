@@ -3,8 +3,8 @@
     <div class="columns">
       <div class="column has-text-centered">
         <img src="../assets/logo.png" width="100">
-        <h1 class="title">Welcome to Mahidol Lab Database</h1>
-        <router-link class="button is-light" :to="{name: 'Tests'}">
+        <h1 class="title">ระบบฐานข้อมูลห้องปฏิบัติการมหาวิทยาลัยมหิดล</h1>
+        <router-link class="button is-light is-success is-outlined" :to="{name: 'Tests'}">
           <span class="icon">
            <i class="fas fa-search"></i>
           </span>
@@ -15,7 +15,7 @@
     <hr>
     <div class="columns">
       <div class="column has-text-centered">
-        <router-link :to="{ name: 'Form' }" class="button is-info is-light">
+        <router-link :to="{ name: 'Form' }" class="button is-info is-light is-outlined">
         <span class="icon">
           <i class="fas fa-plus"></i>
         </span>
