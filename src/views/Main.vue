@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="column has-text-centered">
         <img src="../assets/logo.png" width="100">
-        <h1 class="title">ระบบฐานข้อมูลห้องปฏิบัติการมหาวิทยาลัยมหิดล</h1>
+        <h1 class="title">ระบบฐานข้อมูลห้องปฏิบัติการทดสอบเครื่องมือแพทย์มหาวิทยาลัยมหิดล</h1>
         <router-link class="button is-light is-success is-outlined" :to="{name: 'Tests'}">
           <span class="icon">
            <i class="fas fa-search"></i>
